@@ -20,8 +20,8 @@ for (let i=0;i<targetsA.length;i++){
                 const effectData = {
                     changes: [
                         {key: "StatusEffect", value: "combat-utility-belt.unconscious", mode: 0, priority: 20},
+			{key: "StatusEffect", value: "combat-utility-belt.prone", mode: 0, priority: 20}
                     ],
-
                     disabled: false,
                     duration: {rounds: 10 , seconds: undefined, startRound: undefined, startTime: undefined, startTurn: undefined, turns: undefined},
                     icon: "systems/dnd5e/icons/spells/light-magenta-1.jpg",
