@@ -21,7 +21,6 @@ for (let i=0;i<targetsA.length;i++){
                 const effectData = {
                     changes: [
                         {key: "StatusEffect", value: "combat-utility-belt.unconscious", mode: 0, priority: 20},
-			{key: "StatusEffect", value: "combat-utility-belt.prone", mode: 0, priority: 20}
                     ],
                     disabled: false,
                     duration: {rounds: 10 , seconds: undefined, startRound: undefined, startTime: undefined, startTurn: undefined, turns: undefined},
@@ -48,10 +47,10 @@ function isImumune(token){
     }catch(e){}
     try{
 	for (let j = 0; j < canvas.tokens.conthp_pooled[0].actor.data.data.traits.ci.value.length ; j++){
-    	if (canvas.tokens.conthp_pooled[0].actor.data.data.traits.ci.value[j].toLowerCase() === 'charmed'){
+    	if (token.actor.data.data.traits.ci.value[j].toLowerCase() === 'charmed'){
         	return true;
     	}
-        if (canvas.tokens.conthp_pooled[0].actor.data.data.traits.ci.value[j].toLowerCase() === 'sleep'){
+        if (token.actor.data.data.traits.ci.value[j].toLowerCase() === 'sleep'){
             return true;
         }
 }}catch(e){}
@@ -60,7 +59,7 @@ return false;
 //Function to verify is unconscious
 function isUnconscious(token){
 for (let i=0;i<token.actor.data.effects._source.length;i++){
-    if (token.actor.data.effects._source[i].label === 'Sleep'){return true;}}
+    if (token.actor.data.effects._source[i].label === 'Unconscious'&&token.actor.data.effects._source[i].disabled === false){return true;}}
 return false;
 }
 //game.cub.getConditions(token/s) //Returns a map of conditions, not an array!!!
