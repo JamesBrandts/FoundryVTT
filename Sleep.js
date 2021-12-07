@@ -1,19 +1,21 @@
+//Deffines variables based on args[0], feeded by ItemMacro
 const actorD = game.actors.get(args[0].actor._id);
 const tokenD = canvas.tokens.get(args[0].tokenId);
 const itemD = args[0].item;
 let roll = args[0].damageTotal
+//Define targets list
 const tgts = []
 for (let i=0;i<args[0].targets.length;i++){
     let target = canvas.tokens.get(args[0].targets[i]._id);
     tgts.push(target)
 }
+//Sort targets list in crescent order by HP value
 tgts.sort(function(a,b){return a.actor.data.data.attributes.hp.value - b.actor.data.data.attributes.hp.value})
-
+//Runs through targets list, verifying if the targets are immune, are uncouncious, apply the effect and reduces the HP from the pool.
 for (let i=0;i<tgts.length;i++){
     if (!isUnconscious(tgts[i])){
         if (!isImumune(tgts[i])){
             if (tgts[i].actor.data.data.attributes.hp.value <= roll){
-                //ChatMessage.create({content: tgts[i].actor.data.name})
                 const effectData = {
                     changes: [
                         {key: "StatusEffect", value: "combat-utility-belt.unconscious", mode: 0, priority: 20},
@@ -33,7 +35,7 @@ for (let i=0;i<tgts.length;i++){
     roll -= tgts[i].actor.data.data.attributes.hp.value
     }}
 }
-
+//Function to verify if the target token is Immune to Sleep or enchantments
 function isImumune(token){
     try{
         if (token.actor.data.data.details.race.toLowerCase().includes('elf')){return true;}
@@ -53,6 +55,7 @@ function isImumune(token){
 }}catch(e){}
 return false;
 }
+//Function to verify is unconcious
 function isUnconscious(token){
 for (let i=0;i<token.actor.data.effects._source.length;i++){
     if (token.actor.data.effects._source[i].label === 'Unconscious'){return true;}}
