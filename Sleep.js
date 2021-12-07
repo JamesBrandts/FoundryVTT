@@ -1,5 +1,5 @@
 //Work in progress
-//Deffines variables based on args[0], feeded by ItemMacro
+//Defines variables based on args[0], feeded by ItemMacro
 const actorD = game.actors.get(args[0].actor._id);
 const tokenD = canvas.tokens.get(args[0].tokenId);
 const itemD = args[0].item;
@@ -13,7 +13,7 @@ for (let i=0;i<args[0].targets.length;i++){
 }
 //Sort targets list in crescent order by HP value
 targetsA.sort(function(a,b){return a.actor.data.data.attributes.hp.value - b.actor.data.data.attributes.hp.value})
-//Runs through targets list, verifying if the targets are immune, are uncouncious, apply the effect and reduces the HP from the pool.
+//Runs through targets list, verifying if the targets are immune, are unconscious, apply the effect and reduces the HP from the sleep pool.
 for (let i=0;i<targetsA.length;i++){
     if (!isUnconscious(targetsA[i])){
         if (!isImumune(targetsA[i])){
@@ -57,7 +57,7 @@ function isImumune(token){
 }}catch(e){}
 return false;
 }
-//Function to verify is unconcious
+//Function to verify is unconscious
 function isUnconscious(token){
 for (let i=0;i<token.actor.data.effects._source.length;i++){
     if (token.actor.data.effects._source[i].label === 'Sleep'){return true;}}
