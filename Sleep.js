@@ -59,7 +59,7 @@ return false;
 //Function to verify is unconcious
 function isUnconscious(token){
 for (let i=0;i<token.actor.data.effects._source.length;i++){
-    if (token.actor.data.effects._source[i].label === 'Unconscious'){return true;}}
+    if (token.actor.data.effects._source[i].label === 'Sleep'){return true;}}
 return false;
 }
 //game.cub.getConditions(token/s)
