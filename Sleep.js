@@ -1,3 +1,4 @@
+//Work on progress
 //Deffines variables based on args[0], feeded by ItemMacro
 const actorD = game.actors.get(args[0].actor._id);
 const tokenD = canvas.tokens.get(args[0].tokenId);
