@@ -6,6 +6,7 @@ const itemD = args[0].item;
 let hp_pool = args[0].damageTotal
 //Define targets list
 const targetsA = []
+//Turns the elements of the targets list into propper tokens, as args[0].targets returns docummentTokens.
 for (let i=0;i<args[0].targets.length;i++){
     let target = canvas.tokens.get(args[0].targets[i]._id);
     targetsA.push(target)
