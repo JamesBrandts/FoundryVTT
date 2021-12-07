@@ -61,3 +61,4 @@ for (let i=0;i<token.actor.data.effects._source.length;i++){
     if (token.actor.data.effects._source[i].label === 'Unconscious'){return true;}}
 return false;
 }
+//game.cub.getConditions(token/s)
