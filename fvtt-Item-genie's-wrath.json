@@ -1,0 +1,173 @@
+{
+  "name": "Genie’s Wrath",
+  "type": "feat",
+  "img": "icons/magic/control/silhouette-hold-change-blue.webp",
+  "data": {
+    "description": {
+      "value": "",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "",
+    "activation": {
+      "type": "",
+      "cost": 0,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 0,
+      "max": "0",
+      "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "requirements": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
+  },
+  "effects": [
+    {
+      "_id": "ZjUL6z2dhutiFxRk",
+      "changes": [
+        {
+          "key": "macro.itemMacro",
+          "mode": 0,
+          "value": "",
+          "priority": "20"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null
+      },
+      "icon": "icons/magic/control/silhouette-hold-change-blue.webp",
+      "label": "Genie’s Wrath",
+      "origin": "Item.Ey9NYAkSKTs0Kpva",
+      "transfer": true,
+      "flags": {
+        "dae": {
+          "stackable": "none",
+          "macroRepeat": "startEveryTurn",
+          "specialDuration": [],
+          "transfer": true,
+          "durationExpression": ""
+        },
+        "ActiveAuras": {
+          "isAura": false,
+          "radius": null,
+          "aura": "None",
+          "alignment": "",
+          "type": "",
+          "ignoreSelf": false,
+          "height": false,
+          "hidden": false,
+          "hostile": false,
+          "onlyOnce": false,
+          "displayTemp": false
+        },
+        "core": {
+          "statusId": ""
+        }
+      },
+      "tint": "",
+      "selectedKey": "macro.itemMacro"
+    }
+  ],
+  "flags": {
+    "midi-qol": {
+      "onUseMacroName": "",
+      "effectActivation": false
+    },
+    "itemacro": {
+      "macro": {
+        "data": {
+          "_id": null,
+          "name": "Genie’s Wrath",
+          "type": "script",
+          "author": "wLtW0cjONx7B4hSn",
+          "img": "icons/svg/dice-target.svg",
+          "scope": "global",
+          "command": "const effectData = {\n    changes: [\n        {key: \"flags.midi-qol.optional.emboldeningBond.damage\", mode: 5, value: \"2[bludgeoning]\", priority: \"20\"},\n        {key: \"flags.midi-qol.optional.emboldeningBond.label\", mode: 5, value: \"Genie’s Wrath\", priority: \"20\"},\n    ],\n    disabled: false,\n    duration: {rounds: 1, seconds: undefined, startRound: undefined, startTime: undefined, startTurn: undefined, turns: undefined},\n    icon: \"icons/magic/control/silhouette-hold-change-blue.webp\",\n    label: \"Genie’s Wrath Damage Bonus\",\n    tint: null,\n    transfer: false,\n    flags: {dae : {specialDuration: [\"turnStart\"]}}\n}\n\n\nif (args[0] === \"each\" || args[0] === \"on\") {\n    token = await fromUuid(args[1].tokenUuid)\n    token.actor.createEmbeddedDocuments(\"ActiveEffect\", [effectData])\n}",
+          "folder": null,
+          "sort": 0,
+          "permission": {
+            "default": 0
+          },
+          "flags": {}
+        }
+      }
+    },
+    "core": {
+      "sourceId": "Item.Ey9NYAkSKTs0Kpva"
+    },
+    "magicitems": {
+      "enabled": false,
+      "equipped": false,
+      "attuned": false,
+      "charges": "0",
+      "chargeType": "c1",
+      "destroy": false,
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": false,
+      "recharge": "0",
+      "rechargeType": "t1",
+      "rechargeUnit": "r1",
+      "sorting": "l"
+    },
+    "cf": {
+      "id": "temp_ovon30cu8t",
+      "color": "#000000"
+    },
+    "midiProperties": {
+      "nodam": false,
+      "fulldam": false,
+      "halfdam": false,
+      "rollOther": false,
+      "critOther": false,
+      "magicdam": false,
+      "magiceffect": false,
+      "concentration": false
+    },
+    "exportSource": {
+      "world": "teste",
+      "system": "dnd5e",
+      "coreVersion": "9.255",
+      "systemVersion": "1.5.7"
+    }
+  }
+}
