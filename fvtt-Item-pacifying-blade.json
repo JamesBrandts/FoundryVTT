@@ -1,0 +1,189 @@
+{
+  "name": "Pacifying Blade",
+  "type": "spell",
+  "img": "icons/magic/holy/prayer-hands-glowing-yellow.webp",
+  "data": {
+    "description": {
+      "value": "<p>You brandish the weapon used in the spell’s casting and make a melee attack with it against one creature within 5 feet of you. On a hit, the target suffers non-lethal damage from your weapon and then the weapon and target are linked by psychic energy until the start of your next turn. If the target willingly attacks any creature before the start of your next turn, it takes 1d8 psychic damage, and the spell ends. At 5th level, the melee attack deals an extra 1d8 psychic damage to the target on a hit, and the damage the target takes for attacking increases to 2d8. Both damage rolls increase by 1d8 at 11th level (2d8 and 3d8) and again at 17th level (3d8 and 4d8).</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "touch",
+      "type": ""
+    },
+    "range": {
+      "value": 5,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "dex",
+    "actionType": "mwak",
+    "attackBonus": "0",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d8 + @mod",
+          "piercing"
+        ],
+        [
+          "floor(((@details.level) +1) / 6)d8",
+          "psychic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "level": 0,
+    "school": "evo",
+    "components": {
+      "value": "",
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": false
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": false
+    },
+    "scaling": {
+      "mode": "none",
+      "formula": ""
+    }
+  },
+  "effects": [
+    {
+      "_id": "p54mtfqxahs5ietr",
+      "changes": [
+        {
+          "key": "macro.itemMacro",
+          "mode": 0,
+          "value": "@details.level",
+          "priority": "20"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "rounds": 1
+      },
+      "icon": "icons/magic/holy/prayer-hands-glowing-yellow.webp",
+      "label": "Pacifying Blade",
+      "transfer": false,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "macroRepeat": "none",
+          "specialDuration": [
+            "1Attack"
+          ],
+          "transfer": false
+        },
+        "ActiveAuras": {
+          "isAura": false,
+          "aura": "None",
+          "radius": null,
+          "alignment": "",
+          "type": "",
+          "ignoreSelf": false,
+          "height": false,
+          "hidden": false,
+          "displayTemp": false,
+          "hostile": false,
+          "onlyOnce": false
+        }
+      },
+      "tint": null,
+      "selectedKey": "macro.itemMacro"
+    }
+  ],
+  "flags": {
+    "itemacro": {
+      "macro": {
+        "data": {
+          "_id": null,
+          "name": "Pacifying Blade",
+          "type": "script",
+          "author": "wLtW0cjONx7B4hSn",
+          "img": "icons/svg/dice-target.svg",
+          "scope": "global",
+          "command": "if(args.length < 2){\n  let originActor = game.actors.get(args[0].actorData._id)\n  originActor.setFlag('dae','boomingBladeCardId',args[0].itemCardId)\n}\nif(args[0]=='off'){\n let target = canvas.tokens.get(args[2].tokenId)\n let item = await fromUuid(args[2].origin)\n let actorD = game.actors.get(item.actor.id)\n let boomingBladeCardId = actorD.data.flags.dae.boomingBladeCardId\n let tokenD = canvas.tokens.get(args[2].tokenId)\n await new Promise(r => setTimeout(r, 200));\n let dices = Math.ceil(((args[1])+1)/6+0.1)\n if(canvas.tokens.get(game.combat.current.tokenId).actor.id != item.actor.id){\n   let damageRoll = await new Roll(`${dices}d8`).roll();\n   new MidiQOL.DamageOnlyWorkflow(actorD, tokenD, damageRoll.total, 'psychic', [target], damageRoll, { flavor: 'Pacifying Blade', itemCardId: boomingBladeCardId});\n }\n}",
+          "folder": null,
+          "sort": 0,
+          "permission": {
+            "default": 0
+          },
+          "flags": {}
+        }
+      }
+    },
+    "midi-qol": {
+      "effectActivation": false,
+      "onUseMacroName": "[postActiveEffects]ItemMacro"
+    },
+    "midiProperties": {
+      "nodam": false,
+      "fulldam": false,
+      "halfdam": false,
+      "rollOther": false,
+      "critOther": false,
+      "magicdam": false,
+      "magiceffect": false,
+      "concentration": false,
+      "toggleEffect": false
+    },
+    "core": {
+      "sourceId": "Item.VhFHo2iPBwX02cuP"
+    },
+    "exportSource": {
+      "world": "teste",
+      "system": "dnd5e",
+      "coreVersion": "9.255",
+      "systemVersion": "1.5.7"
+    }
+  }
+}
