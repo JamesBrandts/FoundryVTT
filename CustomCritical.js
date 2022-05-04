@@ -1,4 +1,11 @@
-//Requer Testes
+//Require test
+//If midi-qol.preAttackRoll is too late, usar:
+/*
+Hooks.on("midi-qol.preItemRoll, (workflow) =>{
+    if(!['mwas','msak','rwak','rsak'].includes(workflow.item.data.actionType) return;
+*/
+         
+
 
 Hooks.on("midi-qol.preAttackRoll", (workflow) =>{
     const attacker = fromUuid(workflow.actorUuid)
