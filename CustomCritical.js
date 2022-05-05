@@ -1,17 +1,10 @@
-//Require test
-//If midi-qol.preAttackRoll is too late, usar:
-/*
-Hooks.on("midi-qol.preItemRoll, (workflow) =>{
-    if(!['mwas','msak','rwak','rsak'].includes(workflow.item.data.actionType) return;
-*/
-         
-
-
-Hooks.on("midi-qol.preAttackRoll", (workflow) =>{
-    const attacker = fromUuid(workflow.actorUuid)
+Hooks.on("midi-qol.preAttackRoll", async (workflow) =>{
+    console.log(workflow)
+    const attacker = game.actors.get(workflow.actor.id)
     const targetAc = canvas.tokens.get(workflow.targets.ids[0]).actor.data.data.attributes.ac.value
-    const attackBonus = workflow.item.data.attackBonus //This is probably wrong
-    const newThreshold = targetAc + 10 - attackBonus
+    const attackBonus = workflow.item.labels.toHit
+    const newThreshold = targetAc + 10 - eval('0' + attackBonus)
+    console.log({'attacker':attacker,'targetAc':targetAc,'attackBonus':attackBonus,'newThreshold':newThreshold})
     if(newThreshold < 20){
         let effectData = {
             "flags": {
@@ -19,33 +12,34 @@ Hooks.on("midi-qol.preAttackRoll", (workflow) =>{
                     "transfer": false,
                     "stackable": "none",
                     "macroRepeat": "none",
-                    "specialDuration": ["attack"] //verify
+                    "specialDuration": ["1Attack"]
                 }
             },
             "changes": [
                 {
                     "key": "flags.dnd5e.weaponCriticalThreshold",
-                    "mode": 0,
+                    "mode": 5,
                     "value": newThreshold,
                     "priority": "20"
                 },
                 {
                     "key": "flags.dnd5e.spellCriticalThreshold",
-                    "mode": 0,
+                    "mode": 5,
                     "value": newThreshold,
                     "priority": "20"
                 }
             ],
             "disabled": false,
             "duration": {
-                "startTime": null
+                "startTime": null,
+                "turns":1
             },
             "icon": "systems/dnd5e/icons/skills/red_10.jpg",
             "label": "Encrised Critical",
             "tint": null,
             "transfer": false,
         }
-        attacker.createEmbededDocuments('ActiveEffect',[effectData])
-    }
-    
+        await attacker.createEmbeddedDocuments('ActiveEffect',[effectData])
+        await new Promise(r => setTimeout(r, 200));
+    }    
 })
