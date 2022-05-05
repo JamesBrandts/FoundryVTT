@@ -1,10 +1,8 @@
 Hooks.on("midi-qol.preAttackRoll", async (workflow) =>{
-    console.log(workflow)
     const attacker = game.actors.get(workflow.actor.id)
     const targetAc = canvas.tokens.get(workflow.targets.ids[0]).actor.data.data.attributes.ac.value
     const attackBonus = workflow.item.labels.toHit
     const newThreshold = targetAc + 10 - eval('0' + attackBonus)
-    console.log({'attacker':attacker,'targetAc':targetAc,'attackBonus':attackBonus,'newThreshold':newThreshold})
     if(newThreshold < 20){
         let effectData = {
             "flags": {
