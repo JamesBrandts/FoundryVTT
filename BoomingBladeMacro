@@ -1,0 +1,98 @@
+async function BoomingBlade(args) {
+const lastArg = args[args.length - 1];
+if(args[0]=="on"){
+    const tactor = await MidiQOL.MQfromActorUuid(lastArg.actorUuid);
+    let weapons = tactor.items.filter(i => i.data.type === `weapon` && i.data.data.actionType == "mwak" && i.data.data.equipped);
+    let weapon_content = ``;
+    for (let weapon of weapons) {
+        weapon_content += `<option value=${weapon.id}>${weapon.name}</option>`;
+    }
+    let content = `
+    <div class="form-group">
+    <label>Weapons : </label>
+    <select name="weapons">
+        ${weapon_content}
+    </select>
+    </div>`;
+    if (weapons.length > 1){
+        new Dialog({
+            title: "Choose Weapon",
+            content,
+            buttons:
+            {
+                Ok:
+                {
+                    label: `Ok`,
+                    callback: (html) => {
+                        let itemId = html.find('[name=weapons]')[0].value;
+                        let weaponItem = tactor.items.get(itemId);
+                        weaponItem.roll()
+                    }
+                },
+                Cancel:
+                {
+                    label: `Cancel`
+                }
+            }
+        }).render(true);
+    }
+    else{
+        let weaponItem = weapons[0];
+        weaponItem.roll()
+    }
+}
+if(args[0].tag != "DamageBonus"){return};
+for (let tokenUuid of args[0]?.hitTargetUuids) {
+    const target = await fromUuid(tokenUuid);
+    const targetActor = target.actor;
+    let effectData = {
+        "changes": [
+            {
+                "key": "macro.itemMacro",
+                "mode": 0,
+                "value": `${args[0].itemCardId} ${args[0].actor._id}`,
+                "priority": "20"
+            }
+        ],
+        "disabled": false,
+        "duration": {
+            "rounds": 1
+        },
+        "icon": "icons/magic/sonic/projectile-shock-wave-blue.webp",
+        "label": "Booming Blade",
+        "flags": {
+            "dae": {
+                "stackable": "none",
+                "durationExpression": "",
+                "macroRepeat": "startEveryTurn",
+                "specialDuration": [],
+                "transfer": false,
+                "itemData": {
+                    "flags": {
+                        "itemacro": {
+                            "macro": {
+                                "data": {
+                                    "command": "const lastArg = args[args.length-1]\\nlet target = await canvas.tokens.get(lastArg.tokenId)\\nif(args[0] == \\\"on\\\"){\\n    let hookID = Hooks.on(\\'updateCombat\\', async function (workflow) {\\n        \\n        if(await canvas.tokens.get(workflow.current.tokenId).actor.id === args[2]){\\n            target.actor.deleteEmbeddedDocuments(\\'ActiveEffect\\',[lastArg.effectId])\\n            Hooks.off(\\\"updateCombat\\\", hookID);\\n        }\\n    })\\n    if(game.combat?.current.tokenId == lastArg.tokenId){\\n        let boomingBladeEffect = await target.actor.data.effects.get(lastArg.effectId)\\n        await boomingBladeEffect.setFlag(\\'dae\\',\\'specialDuration\\',[\\\"isMoved\\\"])\\n    }\\n\\n\\n}\\n\\nif(args[0] == \\\"each\\\"){\\n    let boomingBladeEffect = await target.actor.data.effects.get(lastArg.effectId)\\n    await boomingBladeEffect.setFlag(\\'dae\\',\\'specialDuration\\',[\\\"isMoved\\\"])\\n}\\nif(args[0] == \\\"off\\\"){    \\n    let boomingBladeCardId = args[1]\\n    let boomingBladeCasterId = args[2]\\n    let level = await game.actors.get(boomingBladeCasterId).data.data.attributes.hd\\n    let tokenD = await canvas.tokens.get(lastArg.tokenId)\\n    await new Promise(r => setTimeout(r, 200));\\nif(game.combat?.current.tokenId == lastArg.tokenId){\\n      let dices = 1 + (Math.floor((level + 1) / 6))\\n      Math.floor((4+1)/6)+1\\n      let damageRoll = await new Roll(`${dices}d8`).roll();\\n      new MidiQOL.DamageOnlyWorkflow(target.actor, target, damageRoll.total, \\\"thunder\\\", [target], damageRoll, { flavor: \\\"Booming Blade Secondary Damage\\\", itemCardId: boomingBladeCardId});  \\n  }\\n}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+                                        
+                                    
+                    
+
+if(targetActor.effects.filter(i=>i.data.label == "Booming Blade").length < 1){
+    await MidiQOL.socket().executeAsGM("createEffects", {actorUuid: targetActor.uuid, effects: [effectData]})
+}
+const tactor = await MidiQOL.MQfromActorUuid(lastArg.actorUuid);
+const diceMult = args[0].isCritical ? 2: 1;
+const baseDice = Math.floor((tactor.data.data.details.level+1)/6);
+if(baseDice < 1){return}
+return {damageRoll: `${baseDice * diceMult}d8[thunder]`, flavor: "Booming Blade"}
+}
