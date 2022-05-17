@@ -1,0 +1,185 @@
+{
+  "name": "Riposte",
+  "type": "feat",
+  "img": "icons/skills/melee/swords-parry-block-blue.webp",
+  "data": {
+    "description": {
+      "value": "<p><span style=\"color:#191813;font-family:Signika;font-size:13px\">Quando uma criatura atacar você com um ataque corpo-a-corpo e errar, você pode usar sua reação e gastar um dado de superioridade para realizar um ataque corpo-a-corpo com arma contra essa criatura. Se você atingir, você adiciona seu dado de superioridade a jogada de dano do ataque.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "self"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": ""
+    },
+    "consume": {
+      "type": "attribute",
+      "target": "",
+      "amount": 1
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "requirements": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
+  },
+  "effects": [
+    {
+      "_id": "uz096nr2o6p30joh",
+      "changes": [
+        {
+          "key": "macro.itemMacro",
+          "mode": 0,
+          "value": "0",
+          "priority": "20"
+        },
+        {
+          "key": "flags.dnd5e.DamageBonusMacro",
+          "mode": 0,
+          "value": "ItemMacro.Riposte",
+          "priority": "20"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "turns": 1
+      },
+      "icon": "icons/skills/melee/swords-parry-block-blue.webp",
+      "label": "Riposte",
+      "transfer": false,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "macroRepeat": "none",
+          "specialDuration": [
+            "1Attack"
+          ],
+          "transfer": false
+        },
+        "ActiveAuras": {
+          "isAura": false,
+          "aura": "None",
+          "radius": null,
+          "alignment": "",
+          "type": "",
+          "ignoreSelf": false,
+          "height": false,
+          "hidden": false,
+          "displayTemp": false,
+          "hostile": false,
+          "onlyOnce": false
+        }
+      },
+      "tint": null,
+      "selectedKey": [
+        "macro.itemMacro",
+        "flags.dnd5e.DamageBonusMacro"
+      ]
+    }
+  ],
+  "flags": {
+    "siftoolkit": {
+      "SIFData": {
+        "ignoreDuration": false,
+        "texture": "",
+        "useTexture": false,
+        "alpha": 50,
+        "coneOrigin": 1,
+        "loopAnimations": true,
+        "playTemplateAudio": false,
+        "playDamageAudio": false,
+        "playSaveAudio": false,
+        "clip": "",
+        "volume": 100
+      }
+    },
+    "midi-qol": {
+      "effectActivation": false,
+      "onUseMacroName": ""
+    },
+    "midiProperties": {
+      "nodam": false,
+      "fulldam": false,
+      "halfdam": false,
+      "rollOther": false,
+      "critOther": false,
+      "magicdam": false,
+      "magiceffect": false,
+      "concentration": false,
+      "toggleEffect": false
+    },
+    "itemacro": {
+      "macro": {
+        "data": {
+          "_id": null,
+          "name": "Riposte",
+          "type": "script",
+          "author": "LK3GGIRsXTESa8v3",
+          "img": "icons/svg/dice-target.svg",
+          "scope": "global",
+          "command": "const lastArg = args[args.length - 1];\nconst tactor = await MidiQOL.MQfromActorUuid(lastArg.actorUuid);\nif(args[0]==\"on\"){\nlet weapons = tactor.items.filter(i => i.data.type === `weapon` && i.data.data.actionType == \"mwak\" && i.data.data.equipped);\nlet weapon_content = ``;\nfor (let weapon of weapons) {\n    weapon_content += `<option value=${weapon.id}>${weapon.name}</option>`;\n}\nlet content = `\n<div class=\"form-group\">\n  <label>Weapons : </label>\n  <select name=\"weapons\">\n    ${weapon_content}\n  </select>\n</div>`;\nif (weapons.length > 1){\n        new Dialog({\n            title: \"Choose Weapon\",\n            content,\n            buttons:\n            {\n                Ok:\n                {\n                    label: `Ok`,\n                    callback: (html) => {\n                        let itemId = html.find('[name=weapons]')[0].value;\n                        let weaponItem = tactor.items.get(itemId);\n                        weaponItem.roll()\n                    }\n                },\n                Cancel:\n                {\n                    label: `Cancel`\n                }\n            }\n        }).render(true);\n    }\n    else{\n        let weaponItem = weapons[0];\n        weaponItem.roll()\n    }\n}\nconst diceMult = args[0].isCritical ? 2: 1;\nconst baseDice = 1\nif(baseDice < 1){return}\nreturn {damageRoll: `${baseDice * diceMult}d8`, flavor: \"Riposte\"};",
+          "folder": null,
+          "sort": 0,
+          "permission": {
+            "default": 0
+          },
+          "flags": {}
+        }
+      }
+    },
+    "core": {
+      "sourceId": "Item.6fl50eVFvJWzCKfP"
+    },
+    "exportSource": {
+      "world": "whiteworld",
+      "system": "dnd5e",
+      "coreVersion": "9.269",
+      "systemVersion": "1.6.0"
+    }
+  }
+}
