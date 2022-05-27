@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  background-color: #FFFFFF;
+  width: 50px;
+  height:50px;
+  border: none;
+  position: absolute;
+  
+}
+.buttonUp{
+  left:60px;
+  transform: rotate(270deg);
+}
+.buttonDown{
+  left:60px;
+  top:121px;
+  transform: rotate(90deg);
+}
+.buttonLeft{
+  top:65px;
+  transform: rotate(180deg);
+}
+.buttonRight{
+  left:112px;
+  top:65px;
+}
+
+.buttonUpLeft{
+  top:15px;
+  left:15px;
+  transform: rotate(225deg);
+}
+.buttonDownLeft{
+  left:15px;
+  top:110px;
+  transform: rotate(135deg);
+}
+.buttonDownRight{
+  top:110px;
+  left:105px;
+  transform: rotate(45deg);
+}
+.buttonUpRight{
+  left:105px;
+  top:15px;
+  transform: rotate(315deg);
+}
+.buttonProne{
+  left:60px;
+  top:65px;
+}
+</style>
+</head>
+<script>
+function buttonUp(){
+	window.alert("clicked Up");
+}
+function buttonDown(){
+	window.alert("clicked Down");
+}
+function buttonLeft(){
+	window.alert("clicked Left");
+}
+function buttonRight(){
+	window.alert("clicked Right");
+}
+
+function buttonUpLeft(){
+	window.alert("clicked Up Left");
+}
+function buttonDownLeft(){
+	window.alert("clicked Down Left");
+}
+function buttonUpRight(){
+	window.alert("clicked Up Right");
+}
+function buttonDownRight(){
+	window.alert("clicked Down Right");
+}
+function buttonProne(){
+	window.alert("clicked Prone");
+}
+</script>
+<body>
+
+<button onclick="buttonUp()" class="button buttonUp"><img src="https://dictionary.cambridge.org/pt/images/thumb/arrow_noun_002_01654.jpg?version=5.0.243"style="width:100%"></button><br>
+<button onclick="buttonLeft()" class="button buttonLeft"><img src="https://dictionary.cambridge.org/pt/images/thumb/arrow_noun_002_01654.jpg?version=5.0.243"style="width:100%"></button>
+<button onclick="buttonRight()" class="button buttonRight"><img src="https://dictionary.cambridge.org/pt/images/thumb/arrow_noun_002_01654.jpg?version=5.0.243"style="width:100%"></button><br>
+<button onclick="buttonDown()" class="button buttonDown"><img src="https://dictionary.cambridge.org/pt/images/thumb/arrow_noun_002_01654.jpg?version=5.0.243"style="width:100%"></button><br>
+<button onclick="buttonUpLeft()" class="button buttonUpLeft"><img src="https://dictionary.cambridge.org/pt/images/thumb/arrow_noun_002_01654.jpg?version=5.0.243"style="width:100%"></button><br>
+<button onclick="buttonDownLeft()" class="button buttonDownLeft"><img src="https://dictionary.cambridge.org/pt/images/thumb/arrow_noun_002_01654.jpg?version=5.0.243"style="width:100%"></button>
+<button onclick="buttonUpRight()" class="button buttonUpRight"><img src="https://dictionary.cambridge.org/pt/images/thumb/arrow_noun_002_01654.jpg?version=5.0.243"style="width:100%"></button><br>
+<button onclick="buttonDownRight()" class="button buttonDownRight"><img src="https://dictionary.cambridge.org/pt/images/thumb/arrow_noun_002_01654.jpg?version=5.0.243"style="width:100%"></button><br>
+<button onclick="buttonProne()" class="button buttonProne"><img src="https://w7.pngwing.com/pngs/853/764/png-transparent-hazard-symbol-wet-floor-sign-warning-sign-warning-sign-angle-text-photography.png"style="width:100%"></button><br>
+
+</body>
+</html>
+
+
