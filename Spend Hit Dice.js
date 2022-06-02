@@ -1,8 +1,10 @@
 //This is prepared to be used as an Item Macro;
 const lastArg = args[args.length-1];
-const actorA = game.actors.get(lastArg.actor._id)
+const actorA = game.actors.get(lastArg.actor?._id)
 //If you want to use this as a raw macro, in the macro bar, to use by the selected token comment the 2 previous lines and uncomment the next one
-//const actorA = canvas.tokens.controlled[0].actor
+if(!actorA){
+    const actorA = canvas.tokens.controlled[0].actor
+}
 let hd = await retrieveHD(actorA);
 let hdTotal = 0
 for(let hDiceCount of hd){
