@@ -20,10 +20,10 @@ await Dialog.prompt({
         attackRoll.toMessage({flavor:"Minions Attack Roll"})
         let target = Array.from(game.user.targets)[0];
         let ac = target.actor.data.data.attributes.ac;
-        if(attackRoll<ac)return;
-        damageRoll = new Roll(`${baseDamage*minions}`).evaluate({async:false});
-        //damageRoll.toMessage({flavor:"Minions Damage"})
-        token = canvas.tokens.controlled[0]
-        new MidiQOL.DamageOnlyWorkflow(token.actor, token, damageRoll.total, "slashing", [target], damageRoll, { flavor: 'Mob attack Damage'});
+        if(attackRoll.total>=ac){
+            damageRoll = new Roll(`${baseDamage*minions}`).evaluate({async:false});
+            token = canvas.tokens.controlled[0]
+            new MidiQOL.DamageOnlyWorkflow(token.actor, token, damageRoll.total, "slashing", [target], damageRoll, { flavor: 'Mob attack Damage'});
+        }
     }
 })
