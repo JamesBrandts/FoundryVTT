@@ -19,7 +19,7 @@ await Dialog.prompt({
         attackRoll = new Roll(`d20+${baseBonus}+${minions-1}`).evaluate({async:false});
         attackRoll.toMessage({flavor:"Minions Attack Roll"})
         let target = Array.from(game.user.targets)[0];
-        let ac = target.actor.data.data.attributes.ac;
+        let ac = target.actor.data.data.attributes.ac.value;
         if(attackRoll.total>=ac){
             damageRoll = new Roll(`${baseDamage*minions}`).evaluate({async:false});
             token = canvas.tokens.controlled[0]
