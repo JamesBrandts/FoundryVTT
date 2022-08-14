@@ -1,0 +1,132 @@
+{
+  "name": "Rite Burst",
+  "type": "feat",
+  "img": "icons/magic/symbols/rune-sigil-hook-white-red.webp",
+  "data": {
+    "description": {
+      "value": "",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "minute"
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "self"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "requirements": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
+  },
+  "effects": [
+    {
+      "_id": "izi0nv1fvle3hyw0",
+      "changes": [
+        {
+          "key": "flags.dnd5e.DamageBonusMacro",
+          "mode": 0,
+          "value": "ItemMacro.Rite Burst",
+          "priority": "20"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": 60,
+        "rounds": 10
+      },
+      "icon": "icons/magic/symbols/rune-sigil-hook-white-red.webp",
+      "label": "Rite Burst",
+      "transfer": false,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "macroRepeat": "none",
+          "specialDuration": [],
+          "transfer": false
+        }
+      },
+      "tint": null,
+      "selectedKey": "flags.dnd5e.DamageBonusMacro"
+    }
+  ],
+  "flags": {
+    "itemacro": {
+      "macro": {
+        "data": {
+          "_id": null,
+          "name": "Rite Burst",
+          "type": "script",
+          "author": "U3VAAELfq3wUHjF9",
+          "img": "icons/svg/dice-target.svg",
+          "scope": "global",
+          "command": "const damage = \"1d8\";//This is the amount of damage of the ability, you can chage to, for example \"2d6+4\" to match you ability\nconst damageType = \"fire\";//This is the type of damage of the ability\nif(![\"mwak\",\"rwak\"].includes(args[0].itemData.data.actionType))return;//If it's only for melee weapon attack, delete the \"rwak\"\nconst lastArg = args[args.length - 1];\nlet tokenD = canvas.tokens.get(lastArg.tokenId);\nlet actorD = tokenD.actor\nlet distance = 10;\nlet firstTarget = canvas.tokens.get(args[0].targets[0].id);\nlet aoe_target = canvas.tokens.placeables.filter(target => (\n    canvas.grid.measureDistance(firstTarget.center, target.center) <= distance\n    && target.id != tokenD.id//Delete this line if the ability should damage the user;\n    && target.data.disposition != tokenD.data.disposition//Delete this line if the ability should damage the user allies;\n    ));\nlet item = await actorD.createEmbeddedDocuments('Item',[getItemData()]);\nawait MidiQOL.completeItemRoll(item[0], {targetUuids: aoe_target.map(i=>i.document.uuid)});\nactorD.deleteEmbeddedDocuments('Item',[item[0].id]);\n\n//This is the data of the temporary item\nfunction getItemData(){\n    return {\n        name: \"Rite Burst Damage\",\n        type: \"feat\",\n        img: \"icons/magic/symbols/rune-sigil-hook-white-red.webp\",\n        data: {\n            actionType: \"util\",\n            activation: {type: \"none\"},\n            damage: {parts: [[damage, damageType]]},\n        }\n    };\n}",
+          "folder": null,
+          "sort": 0,
+          "permission": {
+            "default": 0
+          },
+          "flags": {}
+        }
+      }
+    },
+    "core": {
+      "sourceId": "Item.8DKCvMRh6ipJ4NxG"
+    },
+    "exportSource": {
+      "world": "only-midi-qol-and-dae",
+      "system": "dnd5e",
+      "coreVersion": "9.269",
+      "systemVersion": "1.6.3"
+    }
+  }
+}
