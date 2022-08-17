@@ -1,0 +1,112 @@
+{
+  "name": "Inspiration",
+  "type": "feat",
+  "img": "icons/magic/light/orb-lightbulb-gray.webp",
+  "data": {
+    "description": {
+      "value": "",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "",
+    "activation": {
+      "type": "special",
+      "cost": 0,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "self"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "util",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "requirements": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
+  },
+  "effects": [],
+  "flags": {
+    "midi-qol": {
+      "effectActivation": false,
+      "onUseMacroName": "[postActiveEffects]ItemMacro"
+    },
+    "midiProperties": {
+      "nodam": false,
+      "fulldam": false,
+      "halfdam": false,
+      "rollOther": false,
+      "critOther": false,
+      "magicdam": false,
+      "magiceffect": false,
+      "concentration": false,
+      "toggleEffect": false
+    },
+    "itemacro": {
+      "macro": {
+        "data": {
+          "_id": null,
+          "name": "Inspiration",
+          "type": "script",
+          "author": "l3OQsZ52SO1ajIBY",
+          "img": "icons/svg/dice-target.svg",
+          "scope": "global",
+          "command": "let points = await Dialog.prompt({\n  content: `Use how many points?<input type=\"number\">`,\n  callback: (html) => html.find('input').val() \n});\nif(points > actor.data.data.resources.tertiary.value)\n    points = actor.data.data.resources.tertiary.value;\nactor.update({'data.resources.tertiary.value':actor.data.data.resources.tertiary.value - points})\nlet effectData = {\n    \"changes\": [\n        {\n            \"key\": \"data.bonuses.All-Attacks\",\n            \"mode\": 2,\n            \"value\": `${points}`,\n            \"priority\": \"20\"\n        },\n        {\n            \"key\": \"data.bonuses.abilities.check\",\n            \"mode\": 2,\n            \"value\": `${points}`,\n            \"priority\": \"20\"\n        },\n        {\n            \"key\": \"data.bonuses.abilities.save\",\n            \"mode\": 2,\n            \"value\": `${points}`,\n            \"priority\": \"20\"\n        },\n        {\n            \"key\": \"data.bonuses.abilities.skill\",\n            \"mode\": 2,\n            \"value\": `${points}`,\n            \"priority\": \"20\"\n        }\n    ],\n    \"disabled\": false,\n    \"duration\": {\n        \"startTime\": 0\n    },\n    \"icon\": \"icons/magic/light/orb-lightbulb-gray.webp\",\n    \"label\": \"Inspiration\",\n    \"tint\": \"\",\n    \"transfer\": false,\n    \"flags\": {\n        \"dae\": {\n            \"transfer\": false,\n            \"stackable\": \"multi\",\n            \"specialDuration\": [\n                \"1Attack\",\n                \"isSave\",\n                \"isCheck\",\n                \"isSkill\"\n            ]\n        }\n    }\n}\nactor.createEmbeddedDocuments(\"ActiveEffect\",[effectData])",
+          "folder": null,
+          "sort": 0,
+          "permission": {
+            "default": 0
+          },
+          "flags": {}
+        }
+      }
+    },
+    "core": {
+      "sourceId": "Item.Ste4e1ktzI90uwoN"
+    },
+    "exportSource": {
+      "world": "midi-qoldae",
+      "system": "dnd5e",
+      "coreVersion": "9.269",
+      "systemVersion": "1.6.1"
+    }
+  }
+}
