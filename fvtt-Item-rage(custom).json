@@ -1,0 +1,206 @@
+{
+  "name": "Rage",
+  "type": "feat",
+  "img": "systems/dnd5e/icons/skills/red_10.jpg",
+  "data": {
+    "description": {
+      "value": "<p>In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor:</p>\n<ul>\n<li>\n<p>You have advantage on Strength checks and Strength saving throws.</p>\n</li>\n<li>\n<p>When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a barbarian, as shown in the Rage Damage column of the Barbarian table.</p>\n</li>\n<li>\n<p>You have resistance to bludgeoning, piercing, and slashing damage.</p>\n</li>\n</ul>\n<p>If you are able to cast spells, you can't cast them or concentrate on them while raging. </p>\n<p>Your rage lasts for 1 minute. It ends early if you are knocked unconscious or if your turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action. </p>\n<p>Once you have raged the number of times shown for your barbarian level in the Rages column in the table below, you must finish a long rest before you can rage again.</p>\n<p><em style=\"box-sizing:border-box;user-select:text;color:#191813;font-size:13px\">**Foundry note: Note the limited uses is set to the base default of 2. Please manually adjust as required.</em></p>\n<table style=\"width:286px;height:170px\">\n<tbody>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\"><strong>Barbarian Level</strong></td>\n<td style=\"width:68px;height:17px\"><strong>Rages</strong></td>\n<td style=\"width:96px;height:17px\"><strong>Rage Damage</strong></td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">1st</td>\n<td style=\"width:68px;height:17px\">2</td>\n<td style=\"width:96px;height:17px\">+2</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">2nd</td>\n<td style=\"width:68px;height:17px\">2</td>\n<td style=\"width:96px;height:17px\">+2</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">3rd</td>\n<td style=\"width:68px;height:17px\">3</td>\n<td style=\"width:96px;height:17px\">+2</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">4th</td>\n<td style=\"width:68px;height:17px\">3</td>\n<td style=\"width:96px;height:17px\">+2</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">5th</td>\n<td style=\"width:68px;height:17px\">3</td>\n<td style=\"width:96px;height:17px\">+2</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">6th</td>\n<td style=\"width:68px;height:17px\">4</td>\n<td style=\"width:96px;height:17px\">+2</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">7th</td>\n<td style=\"width:68px;height:17px\">4</td>\n<td style=\"width:96px;height:17px\">+2</td>\n</tr>\n<tr>\n<td style=\"width:112px\">8th</td>\n<td style=\"width:68px\">4</td>\n<td style=\"width:96px\">+2</td>\n</tr>\n<tr>\n<td style=\"width:112px\">9th</td>\n<td style=\"width:68px\">4</td>\n<td style=\"width:96px\">+3</td>\n</tr>\n<tr>\n<td style=\"width:112px\">10th</td>\n<td style=\"width:68px\">4</td>\n<td style=\"width:96px\">+3</td>\n</tr>\n<tr>\n<td style=\"width:112px\">11th</td>\n<td style=\"width:68px\">4</td>\n<td style=\"width:96px\">+3</td>\n</tr>\n<tr>\n<td style=\"width:112px\">12th</td>\n<td style=\"width:68px\">5</td>\n<td style=\"width:96px\">+3</td>\n</tr>\n<tr>\n<td style=\"width:112px\">13th</td>\n<td style=\"width:68px\">5</td>\n<td style=\"width:96px\">+3</td>\n</tr>\n<tr>\n<td style=\"width:112px\">14th</td>\n<td style=\"width:68px\">5</td>\n<td style=\"width:96px\">+3</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">15th</td>\n<td style=\"width:68px;height:17px\">5</td>\n<td style=\"width:96px;height:17px\">+3</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">16th</td>\n<td style=\"width:68px;height:17px\">5</td>\n<td style=\"width:96px;height:17px\">+4</td>\n</tr>\n<tr>\n<td style=\"width:112px\">17th</td>\n<td style=\"width:68px\">6</td>\n<td style=\"width:96px\">+4</td>\n</tr>\n<tr>\n<td style=\"width:112px\">18th</td>\n<td style=\"width:68px\">6</td>\n<td style=\"width:96px\">+4</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">19th</td>\n<td style=\"width:68px;height:17px\">6</td>\n<td style=\"width:96px;height:17px\">+4</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:112px;height:17px\">20th</td>\n<td style=\"width:68px;height:17px\">Unlimited</td>\n<td style=\"width:96px;height:17px\">+4</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "PHB pg. 48",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 3,
+      "units": "turn"
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "self"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": 1,
+      "max": "2",
+      "per": "lr",
+      "type": "lr"
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": "",
+      "value": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell",
+      "value": ""
+    },
+    "requirements": "Barbarian 1",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attunement": null
+  },
+  "effects": [
+    {
+      "_id": "BYhd3G9CUPq0cWn6",
+      "flags": {
+        "dae": {
+          "transfer": false,
+          "stackable": "none",
+          "macroRepeat": "startEveryTurn",
+          "specialDuration": [],
+          "durationExpression": ""
+        },
+        "core": {
+          "statusId": ""
+        }
+      },
+      "changes": [
+        {
+          "key": "data.bonuses.mwak.damage",
+          "mode": 0,
+          "value": "(floor(abs((@classes.barbarian.levels-2)/7))+2)",
+          "priority": "2"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null
+      },
+      "icon": "systems/dnd5e/icons/skills/red_10.jpg",
+      "label": "Rage",
+      "tint": null,
+      "transfer": false,
+      "selectedKey": "data.bonuses.mwak.damage"
+    },
+    {
+      "_id": "6y9irozyo3l28ixm",
+      "changes": [
+        {
+          "key": "macro.itemMacro",
+          "mode": 0,
+          "value": "0",
+          "priority": "20"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null
+      },
+      "icon": "systems/dnd5e/icons/skills/red_10.jpg",
+      "label": "Rage",
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "macroRepeat": "startEveryTurn",
+          "specialDuration": [],
+          "transfer": true
+        }
+      },
+      "tint": null,
+      "selectedKey": "macro.itemMacro"
+    }
+  ],
+  "flags": {
+    "entityorder": {
+      "order": 204
+    },
+    "dynamiceffects": {
+      "equipActive": true,
+      "alwaysActive": false,
+      "effects": [
+        {
+          "modSpecKey": "data.bonuses.mwak.damage",
+          "value": "2",
+          "mode": "+",
+          "targetSpecific": false,
+          "id": 1,
+          "itemId": "sydG0RcYmfh2Rqg5",
+          "active": true,
+          "_targets": [],
+          "label": "Bonuses Melee Weapon Damage"
+        },
+        {
+          "modSpecKey": "data.traits.dr.value",
+          "value": "physical",
+          "mode": "+",
+          "targetSpecific": false,
+          "id": 2,
+          "itemId": "sydG0RcYmfh2Rqg5",
+          "active": true,
+          "_targets": []
+        }
+      ]
+    },
+    "betterCurses": {
+      "isCurse": false,
+      "curseName": "",
+      "formula": "",
+      "mwak": false,
+      "rwak": false,
+      "msak": false,
+      "rsak": false
+    },
+    "dae": {
+      "activeEquipped": false,
+      "alwaysActive": false
+    },
+    "core": {
+      "sourceId": "Item.i8yVcWYgOjnbUWcX"
+    },
+    "itemacro": {
+      "macro": {
+        "data": {
+          "_id": null,
+          "name": "Rage",
+          "type": "script",
+          "author": "U3VAAELfq3wUHjF9",
+          "img": "icons/svg/dice-target.svg",
+          "scope": "global",
+          "command": "const lastArg = args[args.length-1];\nconst targetToken = await fromUuid(lastArg.tokenUuid);\nif(args[0] === \"each\"){\n    if (targetToken.actor.data.data.attributes.hp.value >= targetToken.actor.data.data.attributes.hp.max/2)return;\n    //to remove the dialog, delete from here\n    let confirmation = await Dialog.confirm({\n        title: 'Rage',\n        content: `<p>Use Rage?</p>`,\n    });\n    if(!confirmation)return;\n    //to here\n    targetToken.actor.items.getName(\"Rage\").roll();\n}",
+          "folder": null,
+          "sort": 0,
+          "permission": {
+            "default": 0
+          },
+          "flags": {}
+        }
+      }
+    },
+    "exportSource": {
+      "world": "only-midi-qol-and-dae",
+      "system": "dnd5e",
+      "coreVersion": "9.269",
+      "systemVersion": "1.6.3"
+    }
+  }
+}
