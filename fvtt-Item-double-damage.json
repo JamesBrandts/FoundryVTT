@@ -1,0 +1,147 @@
+{
+  "name": "Double Damage",
+  "type": "feat",
+  "img": "icons/magic/lightning/bolt-cloud-sky-white.webp",
+  "data": {
+    "description": {
+      "value": "",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "round"
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "self"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "util",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "requirements": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "cover": null
+  },
+  "effects": [
+    {
+      "_id": "u4kjnlkqr2e0nook",
+      "changes": [
+        {
+          "key": "flags.dnd5e.DamageBonusMacro",
+          "mode": 0,
+          "value": "ItemMacro.Double Damage",
+          "priority": "20"
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "rounds": 1
+      },
+      "icon": "icons/magic/lightning/bolt-cloud-sky-white.webp",
+      "label": "Double Damage",
+      "transfer": false,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "macroRepeat": "none",
+          "specialDuration": [],
+          "transfer": false
+        }
+      },
+      "tint": null,
+      "selectedKey": "flags.dnd5e.DamageBonusMacro"
+    }
+  ],
+  "flags": {
+    "itemacro": {
+      "macro": {
+        "data": {
+          "_id": null,
+          "name": "Double Damage",
+          "type": "script",
+          "author": "U3VAAELfq3wUHjF9",
+          "img": "icons/svg/dice-target.svg",
+          "scope": "global",
+          "command": "return{damageRoll: `${args[0].damageTotal}`, flavor: `Double Damage`}",
+          "folder": null,
+          "sort": 0,
+          "permission": {
+            "default": 0
+          },
+          "flags": {}
+        }
+      }
+    },
+    "midi-qol": {
+      "effectActivation": false,
+      "onUseMacroName": ""
+    },
+    "midiProperties": {
+      "nodam": false,
+      "fulldam": false,
+      "halfdam": false,
+      "rollOther": false,
+      "critOther": false,
+      "magicdam": false,
+      "magiceffect": false,
+      "concentration": false,
+      "toggleEffect": false
+    },
+    "core": {
+      "sourceId": "Item.68cU2sDgXG7BZdKw"
+    },
+    "exportSource": {
+      "world": "only-midi-qol-and-dae",
+      "system": "dnd5e",
+      "coreVersion": "9.269",
+      "systemVersion": "1.6.3"
+    }
+  }
+}
