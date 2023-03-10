@@ -1,0 +1,216 @@
+{
+  "name": "Rage(Ancestral Guardian)",
+  "type": "feat",
+  "img": "icons/creatures/abilities/mouth-teeth-human.webp",
+  "system": {
+    "description": {
+      "value": "<p>In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor:</p>\n<ul>\n<li>\n<p>You have advantage on Strength checks and Strength saving throws.</p>\n</li>\n<li>\n<p>When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a barbarian, as shown in the Rage Damage column of the Barbarian table.</p>\n</li>\n<li>\n<p>You have resistance to bludgeoning, piercing, and slashing damage.</p>\n</li>\n</ul>\n<p>If you are able to cast spells, you can't cast them or concentrate on them while raging. </p>\n<p>Your rage lasts for 1 minute. It ends early if you are knocked unconscious or if your turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action. </p>\n<p>Once you have raged the number of times shown for your barbarian level in the Rages column of the Barbarian table, you must finish a long rest before you can rage again.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "SRD 5.1",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "self"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": 0,
+      "max": "@scale.barbarian.rages",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "requirements": "Barbarian 1",
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
+  },
+  "effects": [
+    {
+      "_id": "eWhL8hUr0c2ujDUm",
+      "flags": {
+        "dae": {
+          "selfTarget": false,
+          "selfTargetAlways": false,
+          "stackable": "none",
+          "durationExpression": "",
+          "specialDuration": []
+        },
+        "core": {
+          "statusId": ""
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.mwak.damage",
+          "mode": 2,
+          "value": "+@scale.barbarian.rage-damage",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.dr.value",
+          "mode": 0,
+          "value": "slashing",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.dr.value",
+          "mode": 0,
+          "value": "piercing",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.dr.value",
+          "mode": 0,
+          "value": "bludgeoning",
+          "priority": 20
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "rounds": 10,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "icons/creatures/abilities/mouth-teeth-human.webp",
+      "label": "Rage",
+      "origin": "Item.bdfYHJstcltQC7SZ",
+      "tint": null,
+      "transfer": true
+    },
+    {
+      "label": "Ancestral Protectors",
+      "icon": "icons/creatures/abilities/mouth-teeth-human.webp",
+      "changes": [
+        {
+          "key": "macro.itemMacro",
+          "mode": 0,
+          "value": "",
+          "priority": 20
+        }
+      ],
+      "transfer": false,
+      "_id": "RKCusC6Nz8vtTRB1",
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "origin": null,
+      "tint": null,
+      "flags": {
+        "dae": {
+          "selfTarget": false,
+          "selfTargetAlways": false,
+          "stackable": "none",
+          "durationExpression": "",
+          "specialDuration": [],
+          "macroRepeat": "startEveryTurn"
+        },
+        "core": {
+          "statusId": ""
+        }
+      }
+    }
+  ],
+  "flags": {
+    "dnd5e": {
+      "sourceId": "Compendium.dnd5e.classfeatures.VoR0SUrNX5EJVPIO",
+      "advancementOrigin": "2wfeg14piijtgdr1.amez6rlose3eoigo"
+    },
+    "core": {
+      "sourceId": "Compendium.dnd5e.classfeatures.VoR0SUrNX5EJVPIO"
+    },
+    "itemacro": {
+      "macro": {
+        "name": "Rage(Ancestral Guardian)",
+        "type": "script",
+        "scope": "global",
+        "command": "const lastArg = args[args.length-1]\nif (args[0] === \"each\" || args[0] === \"on\") {\n    token = await fromUuid(lastArg.tokenUuid)\n    token.actor.createEmbeddedDocuments(\"ActiveEffect\", [getAncestralProtectorEffectsData()])\n}\nfunction getAncestralProtectorEffectsData(){\n    return {\n        \"label\": \"Ancestral Protectors\",\n        \"icon\": \"icons/magic/holy/barrier-shield-winged-cross.webp\",\n        \"origin\": \"Actor.xBYOjtb2JsFrZHbO\",\n        \"duration\": {\n            \"turns\": 1,\n        },\n        \"disabled\": false,\n        \"changes\": [\n            {\n                \"key\": \"flags.dnd5e.DamageBonusMacro\",\n                \"mode\": 0,\n                \"value\": \"ItemMacro.Rage(Ancestral Guardian)\",\n                \"priority\": 20\n            }\n        ],\n        \"flags\": {\n            \"dae\": {\n                \"transfer\": false,\n                \"specialDuration\": [\n                    \"1Hit\"\n                ],\n                \"stackable\": \"multi\",\n                \"macroRepeat\": \"none\"\n            },\n        }\n    }\n}\n\nif(lastArg.tag === \"DamageBonus\"){\n    MidiQOL.socket().executeAsGM(\"createEffects\", {actorUuid: lastArg.targetUuids[0], effects: [getAncestralProtectorFlag(lastArg.tokenId)]})\n}\n\n\nfunction getAncestralProtectorFlag(tokenId){\n    return {\n        \"label\": \"Ancestral Protectors\",\n        \"icon\": \"icons/magic/holy/barrier-shield-winged-cross.webp\",\n        \"origin\": \"Actor.xBYOjtb2JsFrZHbO\",\n        \"duration\": {\n            \"rounds\": 1,\n        },\n        \"disabled\": false,\n        \"changes\": [\n            {\n                \"key\": \"flags.dae.AncestralProtectorsTokenId\",\n                \"mode\": 2,\n                \"value\": tokenId,\n                \"priority\": 20\n            }\n        ]\n    }\n}\n\nlet hookId = Hooks.once(\"midi-qol.preAttackRoll\", async (workflow) => {\n    if(!workflow.actor.flags.dae.AncestralProtectorsTokenId)return;\n    if(Array.from(workflow.targets).map(i=>i.id).includes(workflow.actor.flags.dae.AncestralProtectorsTokenId))return;\n    workflow.disadvantage = true\n});",
+        "author": "nQ3LLoItaixLkZSU",
+        "_id": null,
+        "img": "icons/svg/dice-target.svg",
+        "folder": null,
+        "sort": 0,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {},
+        "_stats": {
+          "systemId": null,
+          "systemVersion": null,
+          "coreVersion": null,
+          "createdTime": null,
+          "modifiedTime": null,
+          "lastModifiedBy": null
+        }
+      }
+    },
+    "exportSource": {
+      "world": "newworld",
+      "system": "dnd5e",
+      "coreVersion": "10.291",
+      "systemVersion": "2.1.5"
+    }
+  },
+  "_stats": {
+    "systemId": "dnd5e",
+    "systemVersion": "2.1.5",
+    "coreVersion": "10.291",
+    "createdTime": 1678412194881,
+    "modifiedTime": 1678412194890,
+    "lastModifiedBy": "nQ3LLoItaixLkZSU"
+  }
+}
