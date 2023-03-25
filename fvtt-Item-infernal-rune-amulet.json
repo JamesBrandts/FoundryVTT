@@ -40,9 +40,9 @@
       "units": ""
     },
     "uses": {
-      "value": null,
-      "max": "",
-      "per": "",
+      "value": 2,
+      "max": "2",
+      "per": "lr",
       "recovery": ""
     },
     "consume": {
@@ -221,7 +221,7 @@
     "systemVersion": "2.1.5",
     "coreVersion": "10.291",
     "createdTime": 1679751192560,
-    "modifiedTime": 1679772482652,
+    "modifiedTime": 1679772704161,
     "lastModifiedBy": "nQ3LLoItaixLkZSU"
   }
 }
