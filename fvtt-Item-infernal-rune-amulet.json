@@ -183,7 +183,7 @@
         "name": "Infernal Rune Amulet",
         "type": "script",
         "scope": "global",
-        "command": "const lastArg = args[args.length-1]\nif(args[0].tag === \"DamageBonus\"){\n    let confirmation = await Dialog.confirm({\n      title: 'Infernal Rune',\n      content: `<p>Use Infernal Rune?</p>`,\n    });\n    if(!confirmation)return;\n    const item = args[0].actor.items.find(i=>i.flags?.dae?.InfernalRuneItem === 1)\n    const targetUuids = args[0].targetUuids\n    await MidiQOL.completeItemUse(item,{},targetUuids)\n}",
+        "command": "if (args[0].tag !== \"DamageBonus\") return\nconst item = args[0].actor.items.find(i => i.flags?.dae?.InfernalRuneItem === 1)\nif(item.system.uses.value < 1)return\nif(![\"msak\",\"mwak\",\"rsak\",\"rwak\"].includes(args[0].item.system.actionType))return\n//If you do not want the Dialog to appear, delete from here...\nlet confirmation = await Dialog.confirm({\n    title: 'Infernal Rune',\n    content: `<p>Use Infernal Rune?</p>`,\n});\nif (!confirmation) return;\n//to here\nconst targetUuids = args[0].targetUuids\nawait MidiQOL.completeItemUse(item, {}, targetUuids)",
         "author": "nQ3LLoItaixLkZSU",
         "_id": null,
         "img": "icons/svg/dice-target.svg",
@@ -221,7 +221,7 @@
     "systemVersion": "2.1.5",
     "coreVersion": "10.291",
     "createdTime": 1679751192560,
-    "modifiedTime": 1679772704161,
+    "modifiedTime": 1679773817636,
     "lastModifiedBy": "nQ3LLoItaixLkZSU"
   }
 }
